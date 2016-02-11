@@ -7,9 +7,9 @@ import java.awt.*;
  */
 public class Triangle implements Rtriangle {
 
-    private Point a = new Point();
-    private Point b = new Point();
-    private Point c = new Point();
+    private Point a;
+    private Point b;
+    private Point c;
 
     public Triangle() {
         this.a = new Point(-3,-2);

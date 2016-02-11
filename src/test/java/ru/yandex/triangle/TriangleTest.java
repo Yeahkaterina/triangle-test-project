@@ -16,26 +16,21 @@ public class TriangleTest {
     @Test
     public void is_triangle_rectangular_test(){
 
-        Point[] points;
-        int [] sidesLength;
-        boolean isRectangular;
+        Point[] points = getVerticesCoordinates();
+        int [] sidesLength = getSortedSidesLengts(points);
 
-        points = getCoordinatesOfTriangleVertices();
-        sidesLength = getSortedSidesLengts(points);
-        isRectangular = isTriangleRectangular(sidesLength);
-
-        Assert.assertTrue("Method 'getRtriangle()' returned not right-angled triangle", isRectangular);
+        Assert.assertTrue("Method 'getRtriangle()' returned not right-angled triangle", isTriangleRectangular(sidesLength));
     }
 
     private boolean isTriangleRectangular(int[] sidesLength) {
 
         int sumOfSquaresCathetus = getSumOfSquaresCathetus(sidesLength);
-        int squareOfHypotenuse = getSquaredOfHypotenuse(sidesLength);
+        int squareOfHypotenuse = sidesLength[2];
 
         return (sumOfSquaresCathetus == squareOfHypotenuse) ? true : false;
     }
 
-    private Point[] getCoordinatesOfTriangleVertices() {
+    private Point[] getVerticesCoordinates() {
 
         Rtriangle result = RtriangleProvider.getRtriangle();
         return new Point[]{
@@ -67,9 +62,5 @@ public class TriangleTest {
 
     private int getSumOfSquaresCathetus(int[] sidesLength) {
         return sidesLength[0] + sidesLength[1];
-    }
-
-    private int getSquaredOfHypotenuse(int[] sidesLength) {
-        return sidesLength[2];
     }
 }
