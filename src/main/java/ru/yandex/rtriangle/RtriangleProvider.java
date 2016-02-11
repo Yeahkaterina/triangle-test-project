@@ -5,31 +5,34 @@ package ru.yandex.rtriangle;
  */
 public final class RtriangleProvider {
 
-    public static Rtriangle getRtriangle(final Triangle pTriangle){
+    public static Rtriangle getRtriangle(){
 
         return new Rtriangle() {
 
+            Rtriangle triangle = new Triangle();
+
             public int getApexX1() {
-                return pTriangle.getApexX1();
+                return triangle.getApexX1();
             }
 
             public int getApexY1() {
-                return pTriangle.getApexY1();
+                return triangle.getApexY1();
             }
 
             public int getApexX2() {
-                return pTriangle.getApexX2();
+                return triangle.getApexX2();
             }
 
             public int getApexY2() {
-                return pTriangle.getApexY2();
+                return triangle.getApexY2();
             }
 
             public int getApexX3() {
-                return pTriangle.getApexX3();
+                return triangle.getApexX3();
             }
 
-            public int getApexY3() { return pTriangle.getApexY3(); }
+            public int getApexY3() {
+                return triangle.getApexY3(); }
         };
     }
 }

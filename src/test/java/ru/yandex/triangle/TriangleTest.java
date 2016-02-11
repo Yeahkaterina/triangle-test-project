@@ -1,11 +1,9 @@
 package ru.yandex.triangle;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import ru.yandex.rtriangle.Rtriangle;
 import ru.yandex.rtriangle.RtriangleProvider;
-import ru.yandex.rtriangle.Triangle;
 
 import java.awt.Point;
 import java.util.Arrays;
@@ -15,36 +13,31 @@ import java.util.Arrays;
  */
 public class TriangleTest {
 
-    Triangle rightTriangle;
-    Point[] points;
-    int [] sidesLength;
-    int sumOfSquaresCathetus;
-    int squareOfHypotenuse;
-
-    @Before
-    public void setTriangleVertices(){
-        Point a = new Point(-3,-2);
-        Point b = new Point(0,-1);
-        Point c = new Point(-2,5);
-
-        rightTriangle = new Triangle(a,b,c);
-    }
-
     @Test
-    public void is_triangle_right_test(){
+    public void is_triangle_rectangular_test(){
 
-        points = getCoordinatesOfTriangleVertices(rightTriangle);
-        sidesLength = getTriangleSidesLenghtAndSort(points);
+        Point[] points;
+        int [] sidesLength;
+        boolean isRectangular;
 
-        sumOfSquaresCathetus = getSumOfSquaresCathetus(sidesLength);
-        squareOfHypotenuse = getSquareOfHypotenuse(sidesLength);
+        points = getCoordinatesOfTriangleVertices();
+        sidesLength = getSortedSidesLengts(points);
+        isRectangular = isTriangleRectangular(sidesLength);
 
-        Assert.assertEquals("Method 'getRtriangle()' returned not right-angled triangle", squareOfHypotenuse, sumOfSquaresCathetus);
+        Assert.assertTrue("Method 'getRtriangle()' returned not right-angled triangle", isRectangular);
     }
 
-    private Point[] getCoordinatesOfTriangleVertices(Triangle rTriangle) {
+    private boolean isTriangleRectangular(int[] sidesLength) {
 
-        Rtriangle result = RtriangleProvider.getRtriangle(rTriangle);
+        int sumOfSquaresCathetus = getSumOfSquaresCathetus(sidesLength);
+        int squareOfHypotenuse = getSquaredOfHypotenuse(sidesLength);
+
+        return (sumOfSquaresCathetus == squareOfHypotenuse) ? true : false;
+    }
+
+    private Point[] getCoordinatesOfTriangleVertices() {
+
+        Rtriangle result = RtriangleProvider.getRtriangle();
         return new Point[]{
                 new Point(result.getApexX1(), result.getApexY1()),
                 new Point(result.getApexX2(), result.getApexY2()),
@@ -52,15 +45,15 @@ public class TriangleTest {
         };
     }
 
-    private int[] getTriangleSidesLenghtAndSort(Point[] points) {
+    private int[] getSortedSidesLengts(Point[] points) {
         Point aSide = points[0];
         Point bSide = points[1];
         Point cSide = points[2];
 
         int[] sides = new int[] {
-                getSquareOfSideLenght(aSide, bSide),
-                getSquareOfSideLenght(bSide, cSide),
-                getSquareOfSideLenght(cSide, aSide)
+                getSquaredLenght(aSide, bSide),
+                getSquaredLenght(bSide, cSide),
+                getSquaredLenght(cSide, aSide)
         };
 
         Arrays.sort(sides);
@@ -68,7 +61,7 @@ public class TriangleTest {
         return sides;
     }
 
-    private int getSquareOfSideLenght(Point aSide, Point bSide) {
+    private int getSquaredLenght(Point aSide, Point bSide) {
         return (int) (Math.pow(aSide.distance(bSide), 2));
     }
 
@@ -76,7 +69,7 @@ public class TriangleTest {
         return sidesLength[0] + sidesLength[1];
     }
 
-    private int getSquareOfHypotenuse(int[] sidesLength) {
+    private int getSquaredOfHypotenuse(int[] sidesLength) {
         return sidesLength[2];
     }
 }

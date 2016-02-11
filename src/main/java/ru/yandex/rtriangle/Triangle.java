@@ -7,43 +7,37 @@ import java.awt.*;
  */
 public class Triangle implements Rtriangle {
 
-    int ApexX1;
-    int ApexY1;
-    int ApexX2;
-    int ApexY2;
-    int ApexX3;
-    int ApexY3;
+    private Point a = new Point();
+    private Point b = new Point();
+    private Point c = new Point();
 
-    public Triangle(Point a, Point b, Point c) {
-        ApexX1 = a.x;
-        ApexY1 = a.y;
-        ApexX2 = b.x;
-        ApexY2 = b.y;
-        ApexX3 = c.x;
-        ApexY3 = c.y;
+    public Triangle() {
+        this.a = new Point(-3,-2);
+        this.b = new Point(0,-1);
+        this.c = new Point(-2,5);
     }
 
     public int getApexX1() {
-        return ApexX1;
+        return a.x;
     }
 
     public int getApexY1() {
-        return ApexY1;
+        return a.y;
     }
 
     public int getApexX2() {
-        return ApexX2;
+        return b.x;
     }
 
     public int getApexY2() {
-        return ApexY2;
+        return b.y;
     }
 
     public int getApexX3() {
-        return ApexX3;
+        return c.x;
     }
 
     public int getApexY3() {
-        return ApexY3;
+        return c.y;
     }
 }
