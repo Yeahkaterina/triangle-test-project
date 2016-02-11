@@ -16,8 +16,8 @@ public class TriangleTest {
     @Test
     public void is_triangle_rectangular_test(){
 
-        Rtriangle result = RtriangleProvider.getRtriangle();
-        Point[] points = getVerticesCoordinates(result);
+        Rtriangle triangle = RtriangleProvider.getRtriangle();
+        Point[] points = getVerticesCoordinates(triangle);
         int [] sidesLength = getSortedSidesLengts(points);
 
         Assert.assertTrue("Method 'getRtriangle()' returned not right-angled triangle", isTriangleRectangular(sidesLength));
