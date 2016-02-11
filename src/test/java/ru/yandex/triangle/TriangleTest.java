@@ -16,7 +16,8 @@ public class TriangleTest {
     @Test
     public void is_triangle_rectangular_test(){
 
-        Point[] points = getVerticesCoordinates();
+        Rtriangle result = RtriangleProvider.getRtriangle();
+        Point[] points = getVerticesCoordinates(result);
         int [] sidesLength = getSortedSidesLengts(points);
 
         Assert.assertTrue("Method 'getRtriangle()' returned not right-angled triangle", isTriangleRectangular(sidesLength));
@@ -30,9 +31,8 @@ public class TriangleTest {
         return (sumOfSquaresCathetus == squareOfHypotenuse) ? true : false;
     }
 
-    private Point[] getVerticesCoordinates() {
+    private Point[] getVerticesCoordinates(Rtriangle result) {
 
-        Rtriangle result = RtriangleProvider.getRtriangle();
         return new Point[]{
                 new Point(result.getApexX1(), result.getApexY1()),
                 new Point(result.getApexX2(), result.getApexY2()),
